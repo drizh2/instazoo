@@ -16,7 +16,7 @@ public class ImageModel {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] imageBytes;
     @JsonIgnore
-    private Long userId;
+    private Long profileId;
     @JsonIgnore
     private Long postId;
 }

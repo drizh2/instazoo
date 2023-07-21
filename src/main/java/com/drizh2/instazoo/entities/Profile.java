@@ -11,7 +11,7 @@ import java.util.*;
 
 @Data
 @Entity
-public class User {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,7 +43,7 @@ public class User {
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
-    public User() {
+    public Profile() {
     }
 
     @PrePersist
