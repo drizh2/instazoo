@@ -1,38 +1,39 @@
 package com.drizh2.instazoo.services;
 
 import com.drizh2.instazoo.entities.Profile;
-import com.drizh2.instazoo.repositories.UserRepository;
+import com.drizh2.instazoo.repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private final ProfileRepository profileRepository;
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CustomUserDetailsService(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Profile profile = userRepository.findByEmail(username)
+        Profile profile = profileRepository.findProfileByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User was not found with username: " + username));
 
         return build(profile);
     }
 
     public Profile loadUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return profileRepository.findProfileById(id).orElse(null);
     }
 
     public static Profile build(Profile profile) {
@@ -46,6 +47,4 @@ public class CustomUserDetailsService implements UserDetailsService {
                 profile.getPassword(),
                 authorities);
     }
-
-
 }
