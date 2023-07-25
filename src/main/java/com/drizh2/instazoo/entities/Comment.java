@@ -16,7 +16,7 @@ public class Comment {
     @Column(nullable = false)
     private String username;
     @Column(nullable = false)
-    private Long userId;
+    private Long profileId;
     @Column(columnDefinition = "text", nullable = false)
     private String message;
     @Column(updatable = false)

@@ -23,7 +23,7 @@ public class Post {
 
     @Column
     @ElementCollection(targetClass = String.class)
-    private Set<String> likedUsers = new HashSet<>();
+    private Set<String> likedProfiles = new HashSet<>();
     @ManyToOne(fetch = FetchType.LAZY)
     private Profile profile;
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "post", orphanRemoval = true)
