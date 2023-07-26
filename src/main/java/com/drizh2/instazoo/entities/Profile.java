@@ -30,8 +30,8 @@ public class Profile implements UserDetails {
     private String password;
 
     @ElementCollection(targetClass = ERoles.class)
-    @CollectionTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "profile_role",
+    joinColumns = @JoinColumn(name = "profile_id"))
     private Set<ERoles> roles = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile", orphanRemoval = true)
