@@ -6,7 +6,7 @@ import com.drizh2.instazoo.payload.response.JWTSuccessResponse;
 import com.drizh2.instazoo.payload.response.MessageResponse;
 import com.drizh2.instazoo.security.JWTProvider;
 import com.drizh2.instazoo.security.SecurityConstants;
-import com.drizh2.instazoo.services.UserService;
+import com.drizh2.instazoo.services.ProfileService;
 import com.drizh2.instazoo.validations.ResponseErrorValidator;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private UserService userService;
+    private ProfileService profileService;
     @Autowired
     private ResponseErrorValidator responseErrorValidator;
 
@@ -58,7 +58,7 @@ public class AuthController {
         ResponseEntity<Object> errorMap = responseErrorValidator.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errorMap)) return errorMap;
 
-        userService.createProfile(request);
+        profileService.createProfile(request);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
