@@ -51,11 +51,12 @@ public class ProfileService {
         profile.setName(profileDTO.getFirstname());
         profile.setLastname(profileDTO.getLastname());
         profile.setBio(profileDTO.getBio());
+        profile.setUsername(profileDTO.getUsername());
 
         return profileRepository.save(profile);
     }
 
-    public Profile getCurrentUser(Principal principal) {
+    public Profile getCurrentProfile(Principal principal) {
         return getProfileByPrincipal(principal);
     }
 
@@ -63,5 +64,9 @@ public class ProfileService {
         String username = principal.getName();
         return profileRepository.findProfileByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User was not found"));
+    }
+
+    public Profile getProfileByID(Long profileId) {
+        return profileRepository.findProfileById(profileId).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
     }
 }

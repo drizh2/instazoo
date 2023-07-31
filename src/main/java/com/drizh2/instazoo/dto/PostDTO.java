@@ -1,6 +1,5 @@
 package com.drizh2.instazoo.dto;
 
-import com.drizh2.instazoo.entities.Profile;
 import lombok.Data;
 
 import java.util.Set;
@@ -9,7 +8,6 @@ import java.util.Set;
 public class PostDTO {
 
     private Long id;
-    private Profile profile;
     private String caption;
     private String location;
     private String username;

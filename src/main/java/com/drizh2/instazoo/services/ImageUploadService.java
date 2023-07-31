@@ -5,7 +5,6 @@ import com.drizh2.instazoo.entities.Post;
 import com.drizh2.instazoo.entities.Profile;
 import com.drizh2.instazoo.exceptions.ImageNotFoundException;
 import com.drizh2.instazoo.repositories.ImageRepository;
-import com.drizh2.instazoo.repositories.PostRepository;
 import com.drizh2.instazoo.repositories.ProfileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,13 +31,11 @@ public class ImageUploadService {
 
     private final ImageRepository imageRepository;
     private final ProfileRepository profileRepository;
-    private final PostRepository postRepository;
 
     @Autowired
-    public ImageUploadService(ImageRepository imageRepository, ProfileRepository profileRepository, PostRepository postRepository) {
+    public ImageUploadService(ImageRepository imageRepository, ProfileRepository profileRepository) {
         this.imageRepository = imageRepository;
         this.profileRepository = profileRepository;
-        this.postRepository = postRepository;
     }
 
     public ImageModel uploadImageToProfile(MultipartFile file, Principal principal) throws IOException {
@@ -73,7 +70,7 @@ public class ImageUploadService {
         return imageRepository.save(imageModel);
     }
 
-    public ImageModel getImageToUser(Principal principal) {
+    public ImageModel getImageToProfile(Principal principal) {
         Profile profile = getProfileByPrincipal(principal);
 
         ImageModel imageModel = imageRepository.findImageModelByProfileId(profile.getId()).orElse(null);
