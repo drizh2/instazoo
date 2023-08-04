@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
       this.tokenStorage.saveUser(data);
 
       this.notificationService.showSneakBar('Successfully logged in!');
+      this.router.navigate(['/']);
+      window.location.reload();
     }, error => {
       console.log(error);
       this.notificationService.showSneakBar(error.message);

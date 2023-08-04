@@ -13,5 +13,5 @@ public class PostDTO {
     private String username;
     private String title;
     private Integer likes;
-    private Set<String> likedProfiles;
+    private Set<String> userLiked;
 }

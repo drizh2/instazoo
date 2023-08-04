@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-const IMAGE_API = 'http://localhost:8080/api/image'
+const IMAGE_API = 'http://localhost:8080/api/image/'
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class ImageUploadService {
     return this.http.get(IMAGE_API + 'profileImage');
   }
 
-  getImageToPost(postId: number): Observable<any> {
+  getImageToPost(postId: number | undefined): Observable<any> {
     return this.http.get(IMAGE_API + postId + '/image');
   }
 }
