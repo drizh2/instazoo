@@ -21,7 +21,7 @@ export class CommentService {
     return this.http.get(COMMENT_API + postId + '/all');
   }
 
-  deleteComment(commentId: number): Observable<any> {
+    deleteComment(commentId: number | undefined): Observable<any> {
     return this.http.post(COMMENT_API + commentId + '/delete', null);
   }
 }
